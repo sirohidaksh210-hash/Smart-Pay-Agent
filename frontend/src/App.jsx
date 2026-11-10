@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 
-const API_URL = 'http://localhost:8000'
+const API_URL = import.meta.env.VITE_API_URL || 'https://smart-pay-agent.onrender.com'
 
 const QUICK_ACTIONS = [
   { label: '📋 List all invoices', prompt: 'Show me all my invoices' },
