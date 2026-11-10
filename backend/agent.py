@@ -1,4 +1,4 @@
-"""
+﻿"""
 SmartPay Agent — with robust AI calling and automatic resilient fallback.
 Even if Google's daily free-tier quota is exhausted, your PayPal integration
 will STILL create real PayPal invoices, fetch real data, and succeed!
@@ -122,7 +122,7 @@ def _fallback_intent_parser(user_message: str) -> str:
                 f"• **Invoice ID:** `{res.get('invoice_id')}`\n"
                 f"• **Invoice Number:** `{res.get('invoice_number')}`\n"
                 f"• **Recipient:** {res.get('recipient')}\n"
-                f"• **Amount:** ${res.get('amount'):.2f} USD\n"
+                f"• **Amount:** ${float(res.get('amount')):.2f} USD\n"
                 f"• **Description:** {res.get('description')}\n"
                 f"• **Status:** SENT (Net 7 days)\n\n"
                 f"Would you like me to schedule a reminder or view your updated invoice list?"
@@ -159,9 +159,9 @@ def _fallback_intent_parser(user_message: str) -> str:
 
         return (
             f"📊 **Monthly Revenue Summary ({today.strftime('%B %Y')}):**\n\n"
-            f"• **Total Income:** ${res.get('total_income', 0.0):.2f} USD\n"
-            f"• **Total Spent:** ${res.get('total_spent', 0.0):.2f} USD\n"
-            f"• **Net Profit:** ${res.get('net', 0.0):.2f} USD\n"
+            f"• **Total Income:** ${float(res.get('total_income', 0.0)):.2f} USD\n"
+            f"• **Total Spent:** ${float(res.get('total_spent', 0.0)):.2f} USD\n"
+            f"• **Net Profit:** ${float(res.get('net', 0.0)):.2f} USD\n"
             f"• **Total Transactions:** {res.get('transaction_count', 0)}\n\n"
             f"💡 *Pro-tip:* You have outstanding invoices pending payment. Would you like me to send reminders to overdue clients?"
         )

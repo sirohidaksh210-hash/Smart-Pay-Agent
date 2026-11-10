@@ -1,4 +1,4 @@
-import httpx
+﻿import httpx
 import os
 import time
 from pathlib import Path
@@ -66,7 +66,7 @@ def create_invoice(recipient_email: str, amount: float, description: str, curren
             "items": [{
                 "name": description,
                 "quantity": "1",
-                "unit_amount": {"currency_code": currency, "value": f"{amount:.2f}"}
+                "unit_amount": {"currency_code": currency, "value": f"{float(amount):.2f}"}
             }]
         }
         
@@ -83,7 +83,7 @@ def create_invoice(recipient_email: str, amount: float, description: str, curren
             item = {
                 "id": invoice_id,
                 "invoice_number": invoice_number,
-                "amount": f"{amount:.2f}",
+                "amount": f"{float(amount):.2f}",
                 "currency": currency,
                 "recipient": recipient_email,
                 "description": description,
@@ -104,7 +104,7 @@ def create_invoice(recipient_email: str, amount: float, description: str, curren
                     "description": f"Invoice {invoice_number}: {description}",
                     "amount": {
                         "currency_code": currency,
-                        "value": f"{amount:.2f}"
+                        "value": f"{float(amount):.2f}"
                     },
                     "payee": {
                         "email_address": recipient_email
@@ -126,7 +126,7 @@ def create_invoice(recipient_email: str, amount: float, description: str, curren
             item = {
                 "id": order_id,
                 "invoice_number": invoice_number,
-                "amount": f"{amount:.2f}",
+                "amount": f"{float(amount):.2f}",
                 "currency": currency,
                 "recipient": recipient_email,
                 "description": description,
@@ -150,7 +150,7 @@ def create_invoice(recipient_email: str, amount: float, description: str, curren
     item = {
         "id": f"PP-{int(time.time())}",
         "invoice_number": invoice_number,
-        "amount": f"{amount:.2f}",
+        "amount": f"{float(amount):.2f}",
         "currency": currency,
         "recipient": recipient_email,
         "description": description,
